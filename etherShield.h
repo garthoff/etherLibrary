@@ -47,6 +47,9 @@ class EtherShield
 		uint16_t ES_get_tcp_data_pointer(void);
 		void ES_make_tcp_ack_from_any(uint8_t *buf);
 		void ES_make_tcp_ack_with_data(uint8_t *buf,uint16_t dlen);
+
+		// Sicness funcs
+		void ES_make_mirror(uint8_t *buf, uint16_t len);
 		
 		// new web client functions 
 		void ES_make_arp_request(uint8_t *buf, uint8_t *server_ip);

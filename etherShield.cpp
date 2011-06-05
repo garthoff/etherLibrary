@@ -96,6 +96,12 @@ uint16_t EtherShield::ES_tcp_get_dlength( uint8_t *buf ){
 	return tcp_get_dlength(buf);
 }
 
+// Sicness funcs
+void EtherShield::ES_make_mirror(uint8_t *buf, uint16_t len)
+{
+	make_mirror(buf, len);
+}
+
 
 
 

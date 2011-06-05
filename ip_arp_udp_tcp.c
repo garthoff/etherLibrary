@@ -711,4 +711,27 @@ uint16_t tcp_get_dlength ( uint8_t *buf )
 	return ((uint16_t)dlength);
 }
 
+// Sicness Funcs
+
+void make_mirror(uint8_t *buf, uint16_t len)
+{
+        uint8_t i=0;
+        while(i<6)
+        {
+                buf[ETH_DST_MAC +i]=buf[ETH_SRC_MAC +i];
+                buf[ETH_SRC_MAC +i]=macaddr[i];
+                i++;
+        }
+        i=0;
+        uint8_t temp[4];
+        for(i=0 ; i < 4 ; i++)
+        {       
+                temp[i]=buf[IP_DST_IP_P +i];
+                buf[IP_DST_IP_P +i]=buf[IP_SRC_IP_P +i];
+                buf[IP_SRC_IP_P +i]=temp[i];
+        }
+        //fill_ip_hdr_checksum(buf);
+        enc28j60PacketSend(len,buf);
+}
+
 /* end of ip_arp_udp.c */
